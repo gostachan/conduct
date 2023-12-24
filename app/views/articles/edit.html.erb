@@ -1,0 +1,37 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <ul class="error-messages">
+          <li>That title is required</li>
+        </ul>
+
+        <%= form_tag("/articles/#{@article.id}/edit") do %>
+          <fieldset>
+            <fieldset class="form-group">
+              <input type="text" name="title" class="form-control form-control-lg" placeholder="Article Title" value="<%= @article.title %>" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" name="description" class="form-control" placeholder="What's this article about?" value="<%= @article.description %>" />
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea
+                name="content"
+                class="form-control"
+                rows="8"
+                placeholder="Write your article (in markdown)"
+              > <%= @article.content %> </textarea>
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="Enter tags" />
+              <div class="tag-list">
+                <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
+              </div>
+            </fieldset>
+            <input type="submit" class="btn btn-lg pull-xs-right btn-primary" value="Publish Article" />
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

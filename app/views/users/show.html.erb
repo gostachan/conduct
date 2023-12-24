@@ -1,0 +1,75 @@
+<div class="profile-page">
+  <div class="user-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <img src="/user_images/<%= @user.id.to_s %>.jpg" class="user-img" />
+          <h4><%= @user.name %></h4>
+          <p>
+            自己紹介文
+          </p>
+          <button class="btn btn-sm btn-outline-secondary action-btn">
+            <i class="ion-plus-round"></i>
+            &nbsp; Follow Eric Simons
+          </button>
+          <button class="btn btn-sm btn-outline-secondary action-btn">
+            <i class="ion-gear-a"></i>
+            &nbsp; Edit Profile Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 offset-md-1">
+        <div class="articles-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link active" href="">My Articles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Favorited Articles</a>
+            </li>
+          </ul>
+        </div>
+
+        <% @articles.each do |article| %>
+          <% user = User.find_by(id: article.user_id) %>
+          <% num_likes = Like.where(article_id: article.id).count %>
+          <div class="article-preview">
+            <div class="article-meta">
+              <a href="/users/<%= user.id %>"><img src="/user_images/<%= user.id.to_s %>.jpg" /></a>
+              <div class="info">
+                <%= link_to("#{user.name}", "/users/#{user.id}")%>
+                <span class="date"><%= article.created_at %></span>
+              </div>
+              <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                <i class="ion-heart"></i> <%= num_likes %>
+              </button>
+            </div>
+            <a href="/articles/<%= article.id %>" class="preview-link">
+              <h1><%= article.title %></h1>
+              <p><%= article.description %></p>
+              <span>Read more...</span>
+              <ul class="tag-list">
+                <li class="tag-default tag-pill tag-outline">realworld</li>
+                <li class="tag-default tag-pill tag-outline">implementations</li>
+              </ul>
+            </a>
+          </div>
+          <% end %>
+
+        <ul class="pagination">
+          <li class="page-item active">
+            <a class="page-link" href="">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="">2</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

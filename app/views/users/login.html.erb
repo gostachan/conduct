@@ -1,0 +1,28 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Sign in</h1>
+        <p class="text-xs-center">
+          <a href="/register">Need an account?</a>
+        </p>
+
+        <ul class="error-messages">
+          <% if flash[:notice] %>
+          <%= flash[:notice] %>
+          <% end %>
+        </ul>
+
+        <%= form_tag("/login") do %>
+          <fieldset class="form-group">
+            <input placeholder="Email" class="form-control form-control-lg" name="email" type="text" value="<%= params[:email] %>" />
+          </fieldset>
+          <fieldset class="form-group">
+            <input placeholder="Password" class="form-control form-control-lg" name="password" type="password" value="<%= params[:password] %>" />
+          </fieldset>
+          <input class="btn btn-lg btn-primary pull-xs-right" type="submit" value="Sign in" />
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

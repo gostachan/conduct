@@ -1,0 +1,88 @@
+<div class="home-page">
+  <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">conduit</h1>
+      <p>A place to share your knowledge.</p>
+    </div>
+  </div>
+
+
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="feed-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <%= form_tag("/home/change_to_your", method: :post) do %>
+                <input type="submit" class="nav-link <%= "active" if @page == "your_feed" %>" value="Your Feed"/>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= form_tag("/home/change_to_global", method: :post) do %>
+                <input type="submit" class="nav-link <%= "active" if @page == "global_feed" %>" value="Global Feed"/>
+              <% end %>
+            </li>
+            
+          </ul>
+
+        </div>
+
+        <% @articles.each do |article| %>
+          <% user = User.find_by(id: article.user_id) %>
+          <% num_likes = Like.where(article_id: article.id).count %>
+          <div class="article-preview">
+            <div class="article-meta">
+              <a href="/users/<%= user.id %>"><img src="/user_images/<%= user.id.to_s %>.jpg" /></a>
+              <div class="info">
+                <a href="/users/<%= user.id %>" class="author"><%= user.name %></a>
+                <span class="date"><%= article.created_at %></span>
+              </div>
+              <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                <i class="ion-heart"></i> <%= num_likes %>
+              </button>
+            </div>
+            <a href="/articles/<%= article.id %>" class="preview-link">
+              <h1><%= article.title %></h1>
+              <p><%= article.description %></p>
+              <span>Read more...</span>
+              <ul class="tag-list">
+                <li class="tag-default tag-pill tag-outline">realworld</li>
+                <li class="tag-default tag-pill tag-outline">implementations</li>
+              </ul>
+            </a>
+          </div>
+          <% end %>
+
+        <ul class="pagination">
+          <li class="page-item active">
+            <a class="page-link" href="">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="">2</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3">
+        <div class="sidebar">
+          <p>Popular Tags</p>
+
+          <div class="tag-list">
+            <a href="" class="tag-pill tag-default">programming</a>
+            <a href="" class="tag-pill tag-default">javascript</a>
+            <a href="" class="tag-pill tag-default">emberjs</a>
+            <a href="" class="tag-pill tag-default">angularjs</a>
+            <a href="" class="tag-pill tag-default">react</a>
+            <a href="" class="tag-pill tag-default">mean</a>
+            <a href="" class="tag-pill tag-default">node</a>
+            <a href="" class="tag-pill tag-default">rails</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_tag("/logout", method: :post) do %>
+  <input type="submit" class="" value="hoge"/>
+<% end %>

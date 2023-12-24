@@ -1,0 +1,48 @@
+<div class="settings-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Your Settings</h1>
+        <% if flash[:notice] %>
+          <ul class="error-messages">
+            <li>That name is required</li>
+          </ul>
+        <% end %>
+
+        <form>
+          <fieldset>
+            <fieldset class="form-group">
+              <input class="form-control" type="text" placeholder="URL of profile picture" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg" type="text" placeholder="Your Name" />
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea
+                class="form-control form-control-lg"
+                rows="8"
+                placeholder="Short bio about you"
+              ></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg" type="text" placeholder="Email" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="New Password"
+              />
+            </fieldset>
+            <button class="btn btn-lg btn-primary pull-xs-right">Update Settings</button>
+          </fieldset>
+        </form>
+        <hr />
+        <!-- <a data-method="post" href="/logout">Or click here to logout.</a> -->
+        <%= form_tag("/logout", method: :post) do %>
+          <input type="submit" class="btn btn-outline-danger" value="Or click here to logout."/>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
