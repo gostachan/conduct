@@ -1,24 +1,10 @@
-# README
+# リポジトリ概要
+apprentice rails提出クエスト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 改善点
+* 足りない機能が多数ある点
+* セキュリティー面が全くできていない点
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 感想
+* rails学習週はモチベーションも低くあまり良い結果にはならなかった
+* railsの習熟度があまりにも低いので,次週以降の提出クエスト並行して，書籍を一冊　or　Railsチュートリアルのどちらかを学習し直す
