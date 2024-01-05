@@ -64,8 +64,11 @@ class ArticlesController < ApplicationController
     article.title = data[:title] if data[:title]
     article.content = data[:content] if data[:content]
     article.description = data[:description] if data[:description]
-    article.save
-    render json: {article: article}, status: :created
+    if article.save
+      render json: {article: article}, status: :created
+    else
+      render json: {status: "flse"} 
+    end
   end
  
   def api_destroy
