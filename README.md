@@ -3,7 +3,7 @@ apprentice rails提出クエスト
 
 # API編
 ## 改善点
-* api_createアクションでAPIからarticleをcreateするとき，ユーザ認証機能を実装していないのでarticleのuser_idが1になる点
+* authenticationエンドポイントが実装できていないので全てのAPI操作がuser_id = 1のユーザが対象になっている点
 * api_createでセキュリティ対策ができていない点
 
 # Rails編
