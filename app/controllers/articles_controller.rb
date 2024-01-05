@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def show
     @article = Article.find_by(id: params[:id])
     @user = User.find_by(id: @article.user_id)
@@ -44,7 +45,17 @@ class ArticlesController < ApplicationController
   end
 
   def api_create
-    render status: 200, json: {status: "success"}
+    data = params[:article]
+    article = Article.new(
+      user_id: 1,
+      title: data[:title],
+      description: data[:description],
+      content: data[:content])
+    if article.save
+      render status: 200, json: {article: article}
+    else
+      render json: {status: "fail"}
+    end
   end
  
   def api_update
