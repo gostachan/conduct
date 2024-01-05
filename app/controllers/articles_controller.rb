@@ -59,11 +59,18 @@ class ArticlesController < ApplicationController
   end
  
   def api_update
-    render status: 200, json: {status: "success"}
+    data = params[:article]
+    article = Article.find(params[:slug])
+    article.title = data[:title] if data[:title]
+    article.content = data[:content] if data[:content]
+    article.description = data[:description] if data[:description]
+    article.save
+    render json: {article: article}, status: :created
   end
-  
+ 
   def api_destroy
-    render status: 200, json: {status: "success"}
+    article = Article.find(params[:slug])
+    article.destroy
   end
  
 end
