@@ -38,5 +38,21 @@ class ArticlesController < ApplicationController
     redirect_to("/users/#{@user.id}")
   end
 
+  def api_index
+    articles = Article.where(user_id: params[:slug])
+    render status: 200, json: {articles: articles}
+  end
+
+  def api_create
+    render status: 200, json: {status: "success"}
+  end
+ 
+  def api_update
+    render status: 200, json: {status: "success"}
+  end
   
+  def api_destroy
+    render status: 200, json: {status: "success"}
+  end
+ 
 end

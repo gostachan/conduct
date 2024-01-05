@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "api/articles/:slug" => "articles#api_index"
+  post "api/articles" => "articles#api_create"
+  put "api/articles/:slug" => "articles#api_update"
+  delete "api/articles/:slug" => "articles#api_destroy"
+
   get "/" => "home#home"
   post "home/change_to_your" => "home#change_to_your"
   post "home/change_to_global" => "home#change_to_global"
